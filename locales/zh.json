@@ -2,9 +2,9 @@
   "auth": {
     "login": "登录",
     "register": "注册",
-    "email": "电子邮箱",
-    "password": "密码",
-    "confirmPassword": "确认密码",
+    "storage": "购物车",
+    "tasks": "通知",
+    "settings": "账户",
     "forgotPassword": "忘记密码？",
     "dontHaveAccount": "还没有账号？",
   "signInWithGoogle": "使用 Google 登录",

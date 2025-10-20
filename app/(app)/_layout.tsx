@@ -2,7 +2,7 @@ import { Colors } from '@/constants/theme'
 import { useColorScheme } from '@/hooks/use-color-scheme'
 import { supabase } from '@/lib/supabase'
 import { Tabs, useRouter } from 'expo-router'
-import { Bell, Heart, Home, PlusCircle, User } from 'lucide-react-native'
+import { Bell, Heart, Home, Menu, PlusCircle, User } from 'lucide-react-native'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Text, TouchableOpacity, View } from 'react-native'
@@ -137,6 +137,15 @@ export default function AppLayout() {
         }}
       />
 
+      {/* Account (moved to be second) */}
+      <Tabs.Screen
+        name="settings"
+        options={{
+          title: t('app.settings') || 'Account',
+          tabBarIcon: ({ color, size }) => <User size={size} color={color} />,
+        }}
+      />
+
       {/* Saved/Wishlist */}
       <Tabs.Screen
         name="storage"
@@ -159,6 +168,15 @@ export default function AppLayout() {
         }}
       />
 
+      {/* Messaging (renamed) */}
+      <Tabs.Screen
+        name="messaging"
+        options={{
+          title: t('app.messages') || 'Messaging',
+          tabBarIcon: ({ color, size }) => <Menu size={size} color={color} />,
+        }}
+      />
+
       {/* Notifications */}
       <Tabs.Screen
         name="tasks"
@@ -168,14 +186,7 @@ export default function AppLayout() {
         }}
       />
 
-      {/* Account */}
-      <Tabs.Screen
-        name="settings"
-        options={{
-          title: t('app.settings') || 'Account',
-          tabBarIcon: ({ color, size }) => <User size={size} color={color} />,
-        }}
-      />
+      
     </Tabs>
   )
 }

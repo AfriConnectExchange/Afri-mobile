@@ -55,9 +55,9 @@
   "app": {
     "home": "Home",
     "name": "Africonnect Exchange",
-    "storage": "Storage",
-    "tasks": "Tasks",
-    "settings": "Settings",
+    "storage": "Carts",
+    "tasks": "Notifications",
+    "settings": "Account",
     "welcome": "Welcome",
     "loading": "Loading..."
   },

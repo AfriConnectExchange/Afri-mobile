@@ -2,9 +2,9 @@
   "auth": {
     "login": "Zaloguj",
     "register": "Zarejestruj",
-    "email": "Adres email",
-    "password": "Hasło",
-    "confirmPassword": "Potwierdź hasło",
+    "storage": "Koszyk",
+    "tasks": "Powiadomienia",
+    "settings": "Konto",
     "forgotPassword": "Zapomniałeś hasła?",
     "dontHaveAccount": "Nie masz konta?",
   "signInWithGoogle": "Zaloguj się przez Google",
