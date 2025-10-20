@@ -168,11 +168,11 @@ export default function AppLayout() {
         }}
       />
 
-      {/* Messaging (renamed) */}
+      {/* Menu (formerly messaging) */}
       <Tabs.Screen
         name="messaging"
         options={{
-          title: t('Menu') || 'Messaging',
+          title: t('Menu') || 'Menu',
           tabBarIcon: ({ color, size }) => <Menu size={size} color={color} />,
         }}
       />
