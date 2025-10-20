@@ -1,3 +1,4 @@
+import AELogo from '@/components/AELogo'
 import { Card } from '@/components/ui/card'
 import { Colors } from '@/constants/theme'
 import { useColorScheme } from '@/hooks/use-color-scheme'
@@ -32,9 +33,10 @@ export default function HomeScreen() {
     <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
       <ScrollView contentContainerStyle={styles.content}>
         <View style={styles.header}>
-          <Text style={[styles.title, { color: colors.text }]}>
-            {t('home.welcome')}, {user?.email?.split('@')[0]}! 👋
-          </Text>
+          <View style={styles.brandRow}>
+            <AELogo size={40} />
+            <Text style={[styles.brandText, { color: colors.text }]}>Africonnect Exchange</Text>
+          </View>
         </View>
 
         <Card>
@@ -50,12 +52,7 @@ export default function HomeScreen() {
           <View style={styles.cardContent}>
             <User size={24} color={colors.icon} />
             <View style={styles.userInfo}>
-              <Text style={[styles.label, { color: colors.icon }]}>
-                {t('home.email')}
-              </Text>
-              <Text style={[styles.value, { color: colors.text }]}>
-                {user?.email}
-              </Text>
+              <AELogo size={48} />
             </View>
           </View>
         </Card>
@@ -73,6 +70,16 @@ const styles = StyleSheet.create({
   },
   header: {
     marginBottom: 24,
+  },
+  brandRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+  },
+  brandText: {
+    fontSize: 22,
+    fontWeight: '900',
+    marginLeft: 8,
   },
   title: {
     fontSize: 28,
