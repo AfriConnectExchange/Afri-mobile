@@ -172,19 +172,12 @@ export default function AppLayout() {
       <Tabs.Screen
         name="messaging"
         options={{
-          title: t('app.messages') || 'Messaging',
+          title: t('Menu') || 'Messaging',
           tabBarIcon: ({ color, size }) => <Menu size={size} color={color} />,
         }}
       />
 
-      {/* Notifications */}
-      <Tabs.Screen
-        name="tasks"
-        options={{
-          title: t('app.tasks') || 'Notifications',
-          tabBarIcon: ({ color, size }) => <NotificationIconWithBadge color={color} size={size} />,
-        }}
-      />
+      
 
       
     </Tabs>
