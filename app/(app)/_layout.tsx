@@ -3,16 +3,19 @@ import { useColorScheme } from '@/hooks/use-color-scheme';
 import { Tabs, useRouter } from 'expo-router';
 import { Heart, Home, Menu as MenuIcon, User, Bell } from 'lucide-react-native';
 import { useTranslation } from 'react-i18next';
-import { View, TouchableOpacity, Modal, Image, Text, StyleSheet } from 'react-native';
+import { View, TouchableOpacity, Modal, Text, StyleSheet } from 'react-native';
 import { SideMenu } from '@/components/SideMenu';
 import { useState } from 'react';
+import AELogo from '@/components/AELogo';
 
 function CustomHeader() {
   const router = useRouter();
   return (
     <View style={styles.headerContainer}>
-      <Image source={require('@/assets/images/logo.png')} style={styles.logo} />
-      <Text style={styles.headerText}>Africonnect Exchange</Text>
+      <View style={styles.brandRow}>
+        <AELogo size={30} />
+        <Text style={styles.headerText}>Africonnect Exchange</Text>
+      </View>
       <TouchableOpacity onPress={() => router.push('/(app)/notifications')}>
         <Bell size={24} color="black" />
       </TouchableOpacity>
@@ -122,9 +125,10 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     backgroundColor: 'white',
   },
-  logo: {
-    width: 30,
-    height: 30,
+  brandRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
   },
   headerText: {
     fontSize: 18,

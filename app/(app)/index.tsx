@@ -2,7 +2,7 @@ import { Card } from '@/components/ui/card';
 import { Colors } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import { supabase } from '@/lib/supabase';
-import { Calendar, User } from 'lucide-react-native';
+import { Calendar } from 'lucide-react-native';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
@@ -44,14 +44,6 @@ export default function HomeScreen() {
           </View>
         </Card>
 
-        <Card>
-          <View style={styles.cardContent}>
-            <User size={24} color={colors.icon} />
-            <Text style={[styles.cardText, { color: colors.text }]}>
-              View your profile
-            </Text>
-          </View>
-        </Card>
       </ScrollView>
     </SafeAreaView>
   );
