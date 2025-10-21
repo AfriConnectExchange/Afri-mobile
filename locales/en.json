@@ -57,7 +57,7 @@
     "name": "Africonnect Exchange",
     "storage": "Carts",
     "tasks": "Notifications",
-    "settings": "Account",
+    "settings": "My Account",
     "welcome": "Welcome",
     "loading": "Loading..."
   },
@@ -114,7 +114,7 @@
     "copied": "Copied!"
   },
   "settings": {
-    "title": "Settings",
+    "title": "My Account",
     "language": "Language",
     "changePassword": "Change Password",
     "mfa": "Two-Factor Authentication",
