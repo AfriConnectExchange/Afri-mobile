@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 15,
-    paddingTop: 50,
+    paddingTop: 60,
     paddingBottom: 10,
     backgroundColor: 'white',
   },
