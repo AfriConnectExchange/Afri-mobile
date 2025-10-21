@@ -23,11 +23,6 @@ export default function AppLayout() {
         screenOptions={{
           tabBarActiveTintColor: colors.tint,
           headerShown: true,
-          headerLeft: () => (
-            <TouchableOpacity onPress={toggleMenu} style={{ marginLeft: 15 }}>
-              <MenuIcon size={24} color={colors.text} />
-            </TouchableOpacity>
-          ),
           tabBarStyle: {
             backgroundColor: colors.background,
             height: 64,
@@ -70,6 +65,12 @@ export default function AppLayout() {
               <MenuIcon size={size} color={color} />
             ),
           }}
+          listeners={{
+            tabPress: (e) => {
+              e.preventDefault();
+              toggleMenu();
+            },
+          }}
         />
       </Tabs>
       <Modal
@@ -78,13 +79,15 @@ export default function AppLayout() {
         visible={isMenuVisible}
         onRequestClose={toggleMenu}
       >
-        <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.5)' }}>
-          <SideMenu />
-          <TouchableOpacity
-            style={{ flex: 1 }}
-            onPress={toggleMenu}
-          ></TouchableOpacity>
-        </View>
+        <TouchableOpacity
+            style={{ flex: 1, flexDirection: 'row', backgroundColor: 'rgba(0,0,0,0.5)' }}
+            activeOpacity={1}
+            onPressOut={toggleMenu}
+        >
+            <TouchableOpacity style={{width: '80%'}} activeOpacity={1}>
+              <SideMenu />
+            </TouchableOpacity>
+        </TouchableOpacity>
       </Modal>
     </View>
   );
