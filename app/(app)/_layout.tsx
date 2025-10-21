@@ -1,11 +1,24 @@
 import { Colors } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
-import { Tabs } from 'expo-router';
-import { Heart, Home, Menu as MenuIcon, User } from 'lucide-react-native';
+import { Tabs, useRouter } from 'expo-router';
+import { Heart, Home, Menu as MenuIcon, User, Bell } from 'lucide-react-native';
 import { useTranslation } from 'react-i18next';
-import { View, TouchableOpacity, Modal } from 'react-native';
+import { View, TouchableOpacity, Modal, Image, Text, StyleSheet } from 'react-native';
 import { SideMenu } from '@/components/SideMenu';
 import { useState } from 'react';
+
+function CustomHeader() {
+  const router = useRouter();
+  return (
+    <View style={styles.headerContainer}>
+      <Image source={require('@/assets/images/logo.png')} style={styles.logo} />
+      <Text style={styles.headerText}>Africonnect Exchange</Text>
+      <TouchableOpacity onPress={() => router.push('/(app)/notifications')}>
+        <Bell size={24} color="black" />
+      </TouchableOpacity>
+    </View>
+  );
+}
 
 export default function AppLayout() {
   const colorScheme = useColorScheme();
@@ -22,7 +35,6 @@ export default function AppLayout() {
       <Tabs
         screenOptions={{
           tabBarActiveTintColor: colors.tint,
-          headerShown: true,
           tabBarStyle: {
             backgroundColor: colors.background,
             height: 64,
@@ -33,7 +45,7 @@ export default function AppLayout() {
         <Tabs.Screen
           name="index"
           options={{
-            title: t('app.home') || 'Discover',
+            header: () => <CustomHeader />,
             tabBarIcon: ({ color, size }) => <Home size={size} color={color} />,
           }}
         />
@@ -72,6 +84,13 @@ export default function AppLayout() {
             },
           }}
         />
+         <Tabs.Screen
+          name="notifications"
+          options={{ 
+            headerShown: false,
+            href: null,
+           }}
+        />
       </Tabs>
       <Modal
         animationType="slide"
@@ -92,3 +111,23 @@ export default function AppLayout() {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  headerContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 15,
+    paddingTop: 40,
+    paddingBottom: 10,
+    backgroundColor: 'white',
+  },
+  logo: {
+    width: 30,
+    height: 30,
+  },
+  headerText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+});

@@ -1,43 +1,39 @@
-import AELogo from '@/components/AELogo'
-import { Card } from '@/components/ui/card'
-import { Colors } from '@/constants/theme'
-import { useColorScheme } from '@/hooks/use-color-scheme'
-import { supabase } from '@/lib/supabase'
-import { Calendar, User } from 'lucide-react-native'
-import { useEffect, useState } from 'react'
-import { useTranslation } from 'react-i18next'
-import { ScrollView, StyleSheet, Text, View } from 'react-native'
-import { SafeAreaView } from 'react-native-safe-area-context'
+import { Card } from '@/components/ui/card';
+import { Colors } from '@/constants/theme';
+import { useColorScheme } from '@/hooks/use-color-scheme';
+import { supabase } from '@/lib/supabase';
+import { Calendar, User } from 'lucide-react-native';
+import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function HomeScreen() {
-  const { t } = useTranslation()
-  const colorScheme = useColorScheme()
-  const colors = Colors[colorScheme ?? 'light']
-  const [user, setUser] = useState<any>(null)
+  const { t } = useTranslation();
+  const colorScheme = useColorScheme();
+  const colors = Colors[colorScheme ?? 'light'];
+  const [user, setUser] = useState<any>(null);
 
   useEffect(() => {
     supabase.auth.getUser().then(({ data: { user } }) => {
-      setUser(user)
-    })
-  }, [])
+      setUser(user);
+    });
+  }, []);
 
   const getDaysSinceRegistration = () => {
-    if (!user?.created_at) return 0
-    const today = new Date()
-    const created = new Date(user.created_at)
-    const diffTime = Math.abs(today.getTime() - created.getTime())
-    return Math.ceil(diffTime / (1000 * 60 * 60 * 24))
-  }
+    if (!user?.created_at) return 0;
+    const today = new Date();
+    const created = new Date(user.created_at);
+    const diffTime = Math.abs(today.getTime() - created.getTime());
+    return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  };
 
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
       <ScrollView contentContainerStyle={styles.content}>
-        <View style={styles.header}>
-          <View style={styles.brandRow}>
-            <AELogo size={40} />
-            <Text style={[styles.brandText, { color: colors.text }]}>Africonnect Exchange</Text>
-          </View>
-        </View>
+        <Text style={[styles.title, { color: colors.text }]}>
+          Welcome, {user?.email || 'Guest'}!
+        </Text>
 
         <Card>
           <View style={styles.cardContent}>
@@ -51,14 +47,14 @@ export default function HomeScreen() {
         <Card>
           <View style={styles.cardContent}>
             <User size={24} color={colors.icon} />
-            <View style={styles.userInfo}>
-              <AELogo size={48} />
-            </View>
+            <Text style={[styles.cardText, { color: colors.text }]}>
+              View your profile
+            </Text>
           </View>
         </Card>
       </ScrollView>
     </SafeAreaView>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
@@ -68,22 +64,10 @@ const styles = StyleSheet.create({
   content: {
     padding: 16,
   },
-  header: {
-    marginBottom: 24,
-  },
-  brandRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 12,
-  },
-  brandText: {
-    fontSize: 22,
-    fontWeight: '900',
-    marginLeft: 8,
-  },
   title: {
-    fontSize: 28,
+    fontSize: 24,
     fontWeight: 'bold',
+    marginBottom: 24,
   },
   cardContent: {
     flexDirection: 'row',
@@ -93,15 +77,4 @@ const styles = StyleSheet.create({
   cardText: {
     fontSize: 16,
   },
-  userInfo: {
-    flex: 1,
-  },
-  label: {
-    fontSize: 12,
-    marginBottom: 4,
-  },
-  value: {
-    fontSize: 16,
-    fontWeight: '500',
-  },
-})
+});
