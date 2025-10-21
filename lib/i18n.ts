@@ -23,10 +23,12 @@ i18n.use(initReactI18next).init({
   },
 })
 
-storage.getLanguage().then((savedLanguage) => {
-  if (savedLanguage) {
-    i18n.changeLanguage(savedLanguage)
-  }
-})
+if (typeof window !== 'undefined') {
+    storage.getLanguage().then((savedLanguage) => {
+      if (savedLanguage) {
+        i18n.changeLanguage(savedLanguage)
+      }
+    })
+}
 
 export default i18n
