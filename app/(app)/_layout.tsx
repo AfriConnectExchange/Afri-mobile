@@ -1,7 +1,7 @@
 import { Colors } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import { Tabs, useRouter } from 'expo-router';
-import { Heart, Home, Menu as MenuIcon, User, Bell } from 'lucide-react-native';
+import { Heart, Home, Menu as MenuIcon, User, Bell, Search } from 'lucide-react-native';
 import { useTranslation } from 'react-i18next';
 import { View, TouchableOpacity, Modal, Text, StyleSheet } from 'react-native';
 import { SideMenu } from '@/components/SideMenu';
@@ -16,9 +16,14 @@ function CustomHeader() {
         <AELogo size={30} />
         <Text style={styles.headerText}>Africonnect Exchange</Text>
       </View>
-      <TouchableOpacity onPress={() => router.push('/(app)/notifications')}>
-        <Bell size={24} color="black" />
-      </TouchableOpacity>
+      <View style={{flexDirection: 'row', alignItems: 'center', gap: 16}}>
+        <TouchableOpacity onPress={() => router.push('/(app)/search')}>
+          <Search size={24} color="black" />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => router.push('/(app)/notifications')}>
+          <Bell size={24} color="black" />
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
@@ -93,6 +98,13 @@ export default function AppLayout() {
             headerShown: false,
             href: null,
            }}
+        />
+        <Tabs.Screen
+          name="search"
+          options={{
+            headerShown: false,
+            href: null,
+          }}
         />
       </Tabs>
       <Modal
